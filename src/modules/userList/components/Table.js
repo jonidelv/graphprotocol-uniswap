@@ -19,6 +19,7 @@ const cellHeadStyles = {
     textTransform: 'uppercase',
     paddingRight: 10,
     paddingLeft: 10,
+    flex: 1,
   },
 }
 const HeadCell = withStyles(cellHeadStyles)(TableCell)
@@ -33,9 +34,17 @@ const cellBodyStyles = {
     paddingRight: 10,
     paddingLeft: 10,
     cursor: 'pointer',
+    flex: 1,
   },
 }
 const BodyCell = withStyles(cellBodyStyles)(TableCell)
+
+const CustomTableRowStyles = {
+  root: {
+    display: 'flex',
+  },
+}
+const CustomTableRow = withStyles(CustomTableRowStyles)(TableRow)
 
 function balance(balances) {
   if (balances.length) {
@@ -56,28 +65,30 @@ function balance(balances) {
   return 0
 }
 
-function UserTable(data) {
-  const { users } = data.data
-  console.log(users)
-
+function UserTable({ users }) {
   return (
     <Table>
       <TableHead>
-        <TableRow>
+        <CustomTableRow>
           <HeadCell>
             <img src={userLogo} alt="user logo" width="20" /> User ID
           </HeadCell>
           <HeadCell>
             <img src={ethLogo} alt="eth logo" width="20" /> ETH Balance
           </HeadCell>
-        </TableRow>
+        </CustomTableRow>
       </TableHead>
       <TableBody>
         {users.map((user) => (
-          <TableRow hover key={user.id}>
+          <CustomTableRow hover key={user.id}>
             <BodyCell>{user.id}</BodyCell>
-            <BodyCell>{balance(user.exchangeBalances)}</BodyCell>
-          </TableRow>
+            <BodyCell>
+              {(() => {
+                const ethBalance = balance(user.exchangeBalances)
+                return ethBalance.length > 40 ? <span style={{ fontSize: 10 }}>{ethBalance}</span> : ethBalance
+              })()}
+            </BodyCell>
+          </CustomTableRow>
         ))}
       </TableBody>
     </Table>
@@ -85,8 +96,7 @@ function UserTable(data) {
 }
 
 UserTable.propTypes = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  data: PropTypes.object.isRequired,
+  users: PropTypes.array.isRequired,
 }
 
 export default React.memo(UserTable)

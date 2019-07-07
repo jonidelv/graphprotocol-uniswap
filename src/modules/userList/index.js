@@ -51,13 +51,34 @@ styles.errorEl = css`
   color: ${theme.palette.primary.main};
 `
 
-function onGamesScroll(fetchMore) {
-  return (e) => {
-    console.log('scrolling')
+function onGamesScroll(users, fetchMore, loading, setLoading) {
+  return async (e) => {
     const scroll = e.currentTarget.scrollTop
     const contentHeight = e.currentTarget.scrollHeight
     const visibleHeight = e.currentTarget.offsetHeight
     const scrollOffset = 500 // Change this to start fetching before reaching the end of the scroll
+    if (visibleHeight + scroll > contentHeight - scrollOffset && !loading) {
+      try {
+        setLoading(true)
+        await fetchMore({
+          query: queryUsersInfo,
+          variables: { skip: users.length },
+          updateQuery: (prev, { fetchMoreResult }) => {
+            if (!fetchMoreResult) return prev.users
+            const oldUsers = prev.users
+            const newUsers = fetchMoreResult.users
+            return {
+              users: [...oldUsers, ...newUsers],
+            }
+          },
+        })
+      } catch (error) {
+        toast.error('Error fetching more games, please try again later')
+        console.warn(error)
+      } finally {
+        setLoading(false)
+      }
+    }
   }
 }
 
@@ -70,6 +91,7 @@ function responseError(error) {
 
 function UserList() {
   const tableContainerRef = React.useRef(null)
+  const [loading, setLoading] = React.useState(false)
 
   return (
     <div>
@@ -78,16 +100,20 @@ function UserList() {
           response.error ? (
             responseError(response.error)
           ) : (
-            <div css={styles.tableContainer} onScroll={onGamesScroll(response.fetchMore)} ref={tableContainerRef}>
+            <div
+              css={styles.tableContainer}
+              onScroll={onGamesScroll(response.data && response.data.users, response.fetchMore, loading, setLoading)}
+              ref={tableContainerRef}
+            >
               {/* User table */}
-              {!response.loading && <Table data={response.data} />}
+              {response.data && response.data.users && <Table users={response.data.users} />}
 
               {/* Loading indicator */}
               <div css={styles.progressBarWrapper}>
-                {response.loading && <CircularProgress color="primary" size={40} thickness={4} />}
+                {(response.loading || loading) && <CircularProgress color="primary" size={40} thickness={4} />}
               </div>
 
-              {/* Add a transaction */}
+              {/* Add transaction */}
               <div css={styles.addWrapper}>
                 <Fab color="primary" aria-label="Add" style={styles.addButton}>
                   <Icon>add</Icon>
