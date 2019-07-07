@@ -49,7 +49,12 @@ styles.title = css`
 function Header() {
   return (
     <header css={styles.container}>
-      <button onClick={() => { document.location.href = '/' }} css={styles.clickButton}>
+      <button
+        onClick={() => {
+          document.location.href = '/'
+        }}
+        css={styles.clickButton}
+      >
         <img src={logo} alt="Logo" css={styles.logo} />
       </button>
       <div css={styles.title}>Uniswap Graphprotocol</div>

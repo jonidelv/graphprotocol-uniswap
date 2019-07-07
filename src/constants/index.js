@@ -1,5 +1,6 @@
 export const headerHeight = 50 // px
 export const personalPage = 'https://jonidelv.me/'
+export const uniswapUrl = 'https://api.thegraph.com/subgraphs/name/graphprotocol/uniswap'
 export const theme = {
   palette: {
     common: {

@@ -63,7 +63,7 @@ const ToastContainerStyles = styled.div`
     position: fixed;
     bottom: 10px;
     right: 21px;
-    color: ${theme.palette.common.white};
+    color: ${theme.palette.common.black};
     z-index: 99999;
     padding: 5px 15px;
     border-radius: 0;
