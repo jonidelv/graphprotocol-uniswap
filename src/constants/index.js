@@ -21,10 +21,9 @@ export const theme = {
       contrastText: '#fff',
     },
     secondary: {
-      light: '#fff',
-      main: '#fff',
-      dark: '#fff',
-      contrastText: '#fff',
+      light: 'rgba(102, 102, 102, 1)',
+      main: 'rgba(68, 68, 68, 1)',
+      dark: 'rgba(27, 27, 27, 1)',
     },
     error: {
       light: 'rgba(230, 110, 126, 1)',

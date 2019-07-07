@@ -5,23 +5,15 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 
 export const queryUsersInfo = gql`
   query usersInfo($skip: Int) {
-    users(first: 20, skip: $skip) @connection(key: "feed", filter: ["type"]) {
+    users(first: 20, skip: $skip) {
       id
-      txs {
-        event
-        timeStamp
-        ethAmount
-        tokenSymbol
-        tokenAmount
-      }
       exchangeBalances {
         id
-        tokensDeposited
-        tokensWithdrawn
-        tokensBought
         ethDeposited
         ethWithdrawn
         ethBought
+        ethSold
+        ethFeesPaid
       }
     }
   }

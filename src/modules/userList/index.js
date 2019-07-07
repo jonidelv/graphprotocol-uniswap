@@ -8,13 +8,13 @@ import { toast } from 'react-toastify'
 import Icon from '@material-ui/core/Icon'
 import Fab from '@material-ui/core/Fab'
 
-import { queryUsersInfo } from '../../services/client'
+import { queryUsersInfo } from '../../services/apollo'
 import { headerHeight, theme } from '../../constants'
 import Table from './components/Table'
 
 const styles = {}
 styles.tableContainer = css`
-  padding: 15px;
+  padding: 40px;
   position: relative;
   height: calc(100vh - ${headerHeight}px);
   overflow: scroll;
@@ -79,7 +79,8 @@ function UserList() {
             responseError(response.error)
           ) : (
             <div css={styles.tableContainer} onScroll={onGamesScroll(response.fetchMore)} ref={tableContainerRef}>
-              <Table users={response.data} />
+              {/* User table */}
+              {!response.loading && <Table data={response.data} />}
 
               {/* Loading indicator */}
               <div css={styles.progressBarWrapper}>

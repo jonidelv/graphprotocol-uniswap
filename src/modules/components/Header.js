@@ -9,7 +9,7 @@ const styles = {}
 styles.container = css`
   height: ${headerHeight}px;
   width: 100%;
-  padding: 0 20px;
+  padding: 0 40px;
   position: relative;
   z-index: 99;
   display: flex;

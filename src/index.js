@@ -5,7 +5,7 @@ import { ApolloProvider } from 'react-apollo'
 import 'react-toastify/dist/ReactToastify.min.css'
 import './styles/globalStyles.css'
 import App from './modules/App'
-import client from './services/client'
+import client from './services/apollo'
 import * as serviceWorker from './utils/serviceWorker'
 
 ReactDOM.render(
