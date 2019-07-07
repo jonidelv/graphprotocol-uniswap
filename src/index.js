@@ -1,10 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import 'react-toastify/dist/ReactToastify.min.css'
+import './styles/globalStyles.css'
+import App from './modules/App'
 import * as serviceWorker from './utils/serviceWorker'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(
+  <CssBaseline>
+    <App />
+  </CssBaseline>,
+  document.getElementById('root'),
+)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
