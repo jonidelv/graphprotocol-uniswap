@@ -43,7 +43,6 @@ Builds the app for production to the `build` folder.<br>
 and push it to github pages service, you can then see the project running on
 [https://jonidelv.github.io/graphprotocol-uniswap](https://jonidelv.github.io/graphprotocol-uniswap/)
 
-
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
