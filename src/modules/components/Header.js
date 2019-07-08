@@ -5,7 +5,7 @@ import { css, jsx } from '@emotion/core'
 import Button from '@material-ui/core/Button'
 import { headerHeight, theme, logo, personalPage } from '../../constants'
 
-const openPersonalPage = () => () => window.open(personalPage, '_blank')
+const openPersonalPage = () => window.open(personalPage, '_blank')
 const styles = {}
 styles.container = css`
   height: ${headerHeight}px;
@@ -19,8 +19,8 @@ styles.container = css`
   background-color: ${theme.palette.primary.dark};
   box-sizing: border-box;
   border-bottom: 4px solid ${theme.palette.primary.main};
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px,
-    rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px,
+    rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
 `
 styles.logo = css`
   width: 20px;
