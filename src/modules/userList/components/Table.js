@@ -10,6 +10,8 @@ import BigNumber from 'bignumber.js'
 import { theme } from '../../../constants'
 import userLogo from '../../../assets/user.png'
 import ethLogo from '../../../assets/eth.png'
+import { queryUserTransactions } from '../../../services/apollo'
+import { Query } from 'react-apollo'
 
 const cellHeadStyles = {
   head: {
@@ -51,16 +53,10 @@ const CustomTableRow = withStyles(CustomTableRowStyles)(TableRow)
 function balance(balances) {
   if (balances.length) {
     return balances.reduce((total, currentValue) => {
-      const ethBought = BigNumber(currentValue.ethBought)
-      const ethDeposited = BigNumber(currentValue.ethDeposited)
-      const ethFeesPaid = BigNumber(currentValue.ethFeesPaid)
-      const ethSold = BigNumber(currentValue.ethSold)
-      const ethWithdrawn = BigNumber(currentValue.ethWithdrawn)
-      const plusEth = ethBought.plus(ethDeposited)
-      const lessEth = ethFeesPaid.minus(ethSold).minus(ethWithdrawn)
-      const transactionTotal = plusEth.minus(lessEth)
+      const ethAmount = BigNumber(currentValue.ethAmount)
+      const acumulated = BigNumber(total)
 
-      return transactionTotal.plus(total).toString()
+      return ethAmount.plus(acumulated).toString()
     }, 0)
   }
 
@@ -93,14 +89,19 @@ function UserTable(props) {
           >
             <BodyCell>{user.id}</BodyCell>
             <BodyCell>
-              {(() => {
-                const ethBalance = balance(user.exchangeBalances)
-                return ethBalance.length > 40 ? (
-                  <span style={{ fontSize: 10 }}>{ethBalance}</span>
-                ) : (
-                  ethBalance
-                )
-              })()}
+              <Query
+                query={queryUserTransactions}
+                variables={{ user: user.id }}
+              >
+                {(response) =>
+                  response.error ? (
+                    <div>Error getting the balance</div>
+                  ) : (
+                    (response.loading && 'Calculating...') ||
+                    balance(response.data.transactions)
+                  )
+                }
+              </Query>
             </BodyCell>
           </CustomTableRow>
         ))}

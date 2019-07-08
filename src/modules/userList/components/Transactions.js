@@ -119,7 +119,7 @@ function Transactions(props) {
                           <p css={styles.texts}>{transaction.user}</p>
                           <div css={styles.labels}>Token</div>
                           <p css={styles.texts}>{transaction.tokenSymbol}</p>
-                          <div css={styles.labels}>Amount</div>
+                          <div css={styles.labels}>Eth Amount</div>
                           <p css={styles.texts}>{transaction.ethAmount}</p>
                         </div>
                       ))}

@@ -88,7 +88,11 @@ function onGamesScroll(users, fetchMore, loading, setLoading) {
 function responseError(error) {
   toast.error(error.message)
   console.warn(error)
-  return <div css={styles.errorEl}>Error loading the data, please try again later</div>
+  return (
+    <div css={styles.errorEl}>
+      Error loading the data, please try again later
+    </div>
+  )
 }
 
 function openTransferDialog(setTransferDialogOpen) {
@@ -110,18 +114,28 @@ function UserList() {
           ) : (
             <div
               css={styles.tableContainer}
-              onScroll={onGamesScroll(response.data && response.data.users, response.fetchMore, loading, setLoading)}
+              onScroll={onGamesScroll(
+                response.data && response.data.users,
+                response.fetchMore,
+                loading,
+                setLoading,
+              )}
               ref={tableContainerRef}
               className="no-scroll"
             >
               {/* User table */}
               {response.data && response.data.users && (
-                <Table users={response.data.users} selectUser={setSelectedUser} />
+                <Table
+                  users={response.data.users}
+                  selectUser={setSelectedUser}
+                />
               )}
 
               {/* Loading indicator */}
               <div css={styles.progressBarWrapper}>
-                {(response.loading || loading) && <CircularProgress color="primary" size={40} thickness={4} />}
+                {(response.loading || loading) && (
+                  <CircularProgress color="primary" size={40} thickness={4} />
+                )}
               </div>
 
               {/* Add transaction */}
@@ -139,8 +153,15 @@ function UserList() {
           )
         }
       </Query>
-      <Transactions open={!!selectedUser} setSelectedUser={setSelectedUser} selectedUser={selectedUser} />
-      <Transfer open={transferDialogOpen} setTransferDialogOpen={setTransferDialogOpen} />
+      <Transactions
+        open={!!selectedUser}
+        setSelectedUser={setSelectedUser}
+        selectedUser={selectedUser}
+      />
+      <Transfer
+        open={transferDialogOpen}
+        setTransferDialogOpen={setTransferDialogOpen}
+      />
     </div>
   )
 }
