@@ -103,7 +103,12 @@ function UserList() {
           ) : (
             <div
               css={styles.tableContainer}
-              onScroll={onGamesScroll(response.data && response.data.users, response.fetchMore, loading, setLoading)}
+              onScroll={onGamesScroll(
+                response.data && response.data.users,
+                response.fetchMore,
+                loading,
+                setLoading,
+              )}
               ref={tableContainerRef}
               className="no-scroll"
             >
@@ -114,7 +119,9 @@ function UserList() {
 
               {/* Loading indicator */}
               <div css={styles.progressBarWrapper}>
-                {(response.loading || loading) && <CircularProgress color="primary" size={40} thickness={4} />}
+                {(response.loading || loading) && (
+                  <CircularProgress color="primary" size={40} thickness={4} />
+                )}
               </div>
 
               {/* Add transaction */}
@@ -127,7 +134,11 @@ function UserList() {
           )
         }
       </Query>
-      <Transactions open={!!selectedUser} setSelectedUser={setSelectedUser} selectedUser={selectedUser} />
+      <Transactions
+        open={!!selectedUser}
+        setSelectedUser={setSelectedUser}
+        selectedUser={selectedUser}
+      />
     </div>
   )
 }

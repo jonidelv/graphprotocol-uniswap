@@ -91,7 +91,11 @@ function UserTable(props) {
             <BodyCell>
               {(() => {
                 const ethBalance = balance(user.exchangeBalances)
-                return ethBalance.length > 40 ? <span style={{ fontSize: 10 }}>{ethBalance}</span> : ethBalance
+                return ethBalance.length > 40 ? (
+                  <span style={{ fontSize: 10 }}>{ethBalance}</span>
+                ) : (
+                  ethBalance
+                )
               })()}
             </BodyCell>
           </CustomTableRow>

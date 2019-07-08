@@ -7,7 +7,6 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
 import { toast } from 'react-toastify'
@@ -123,9 +122,11 @@ function Transactions(props) {
                       ))}
 
                     {/* No transactions msg */}
-                    {response.data.transactions && !response.data.transactions.length && props.selectedUser && (
-                      <div css={styles.noTransactions}>No transactions for this user</div>
-                    )}
+                    {response.data.transactions &&
+                      !response.data.transactions.length &&
+                      props.selectedUser && (
+                        <div css={styles.noTransactions}>No transactions for this user</div>
+                      )}
 
                     {/* Loading indicator */}
                     <div css={styles.progressBarWrapper}>

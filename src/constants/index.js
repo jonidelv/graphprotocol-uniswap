@@ -40,7 +40,13 @@ export const theme = {
   },
   typography: {
     useNextVariants: true,
-    fontFamily: ['"Montserrat"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'].join(','),
+    fontFamily: [
+      '"Montserrat"',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'sans-serif',
+    ].join(','),
   },
 }
 
