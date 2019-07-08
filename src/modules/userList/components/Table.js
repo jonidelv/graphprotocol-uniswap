@@ -51,7 +51,7 @@ const CustomTableRowStyles = {
 }
 const CustomTableRow = withStyles(CustomTableRowStyles)(TableRow)
 
-function balance(balances) {
+const balance = memoize((balances) => {
   if (balances.length) {
     return balances.reduce((total, currentValue) => {
       const ethAmount = BigNumber(currentValue.ethAmount)
@@ -62,7 +62,7 @@ function balance(balances) {
   }
 
   return 0
-}
+})
 
 function selectUser(userId, select) {
   return () => select(userId)
@@ -85,11 +85,7 @@ function UserTable(props) {
       </TableHead>
       <TableBody>
         {props.users.map((user) => (
-          <CustomTableRow
-            hover
-            key={user.id}
-            onClick={selectUser(user.id, props.selectUser)}
-          >
+          <CustomTableRow hover key={user.id} onClick={selectUser(user.id, props.selectUser)}>
             <BodyCell>{user.id}</BodyCell>
             <BodyCell>
               <Query query={queryUserTransactions} variables={userRow(user.id)}>
@@ -97,8 +93,7 @@ function UserTable(props) {
                   response.error ? (
                     <div>Error getting the balance</div>
                   ) : (
-                    (response.loading && 'Calculating...') ||
-                    balance(response.data.transactions)
+                    (response.loading && 'Calculating...') || balance(response.data.transactions)
                   )
                 }
               </Query>
