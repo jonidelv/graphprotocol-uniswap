@@ -99,7 +99,10 @@ function Transactions(props) {
         <DialogTitle style={styles.dialogTitle}>Transactions</DialogTitle>
         <DialogContent>
           <div css={styles.dialogBody} className="no-scroll">
-            <Query query={queryUserTransactions} variables={{ user: props.selectedUser }}>
+            <Query
+              query={queryUserTransactions}
+              variables={{ user: props.selectedUser }}
+            >
               {(response) =>
                 response.error ? (
                   responseError(response.error)
@@ -125,13 +128,19 @@ function Transactions(props) {
                     {response.data.transactions &&
                       !response.data.transactions.length &&
                       props.selectedUser && (
-                        <div css={styles.noTransactions}>No transactions for this user</div>
+                        <div css={styles.noTransactions}>
+                          No transactions for this user
+                        </div>
                       )}
 
                     {/* Loading indicator */}
                     <div css={styles.progressBarWrapper}>
                       {response.loading && props.selectedUser && (
-                        <CircularProgress color="primary" size={40} thickness={4} />
+                        <CircularProgress
+                          color="primary"
+                          size={40}
+                          thickness={4}
+                        />
                       )}
                     </div>
                   </div>
@@ -141,7 +150,11 @@ function Transactions(props) {
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={close(props.setSelectedUser)} color="primary" variant="contained">
+          <Button
+            onClick={close(props.setSelectedUser)}
+            color="primary"
+            variant="contained"
+          >
             Close
           </Button>
         </DialogActions>
@@ -156,4 +169,4 @@ Transactions.propTypes = {
   selectedUser: PropTypes.string.isRequired,
 }
 
-export default Transactions
+export default React.memo(Transactions)

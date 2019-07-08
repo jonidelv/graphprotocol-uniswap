@@ -12,6 +12,7 @@ import { queryUsersInfo } from '../../services/apollo'
 import { headerHeight, theme } from '../../constants'
 import Table from './components/Table'
 import Transactions from './components/Transactions'
+import Transfer from './components/Transfer'
 
 const styles = {}
 styles.tableContainer = css`
@@ -56,7 +57,8 @@ function onGamesScroll(users, fetchMore, loading, setLoading) {
     const scroll = e.currentTarget.scrollTop
     const contentHeight = e.currentTarget.scrollHeight
     const visibleHeight = e.currentTarget.offsetHeight
-    const scrollOffset = 500 // Change this to start fetching before reaching the end of the scroll
+    // Change this to start fetching before reaching the end of the scroll
+    const scrollOffset = 500
     if (visibleHeight + scroll > contentHeight - scrollOffset && !loading) {
       try {
         setLoading(true)
@@ -89,10 +91,15 @@ function responseError(error) {
   return <div css={styles.errorEl}>Error loading the data, please try again later</div>
 }
 
+function openTransferDialog(setTransferDialogOpen) {
+  return () => setTransferDialogOpen(true)
+}
+
 function UserList() {
   const tableContainerRef = React.useRef(null)
   const [loading, setLoading] = React.useState(false)
   const [selectedUser, setSelectedUser] = React.useState('')
+  const [transferDialogOpen, setTransferDialogOpen] = React.useState(false)
 
   return (
     <div>
@@ -103,12 +110,7 @@ function UserList() {
           ) : (
             <div
               css={styles.tableContainer}
-              onScroll={onGamesScroll(
-                response.data && response.data.users,
-                response.fetchMore,
-                loading,
-                setLoading,
-              )}
+              onScroll={onGamesScroll(response.data && response.data.users, response.fetchMore, loading, setLoading)}
               ref={tableContainerRef}
               className="no-scroll"
             >
@@ -119,14 +121,17 @@ function UserList() {
 
               {/* Loading indicator */}
               <div css={styles.progressBarWrapper}>
-                {(response.loading || loading) && (
-                  <CircularProgress color="primary" size={40} thickness={4} />
-                )}
+                {(response.loading || loading) && <CircularProgress color="primary" size={40} thickness={4} />}
               </div>
 
               {/* Add transaction */}
               <div css={styles.addWrapper}>
-                <Fab color="primary" aria-label="Add" style={styles.addButton}>
+                <Fab
+                  color="primary"
+                  aria-label="Add"
+                  style={styles.addButton}
+                  onClick={openTransferDialog(setTransferDialogOpen)}
+                >
                   <Icon>add</Icon>
                 </Fab>
               </div>
@@ -134,11 +139,8 @@ function UserList() {
           )
         }
       </Query>
-      <Transactions
-        open={!!selectedUser}
-        setSelectedUser={setSelectedUser}
-        selectedUser={selectedUser}
-      />
+      <Transactions open={!!selectedUser} setSelectedUser={setSelectedUser} selectedUser={selectedUser} />
+      <Transfer open={transferDialogOpen} setTransferDialogOpen={setTransferDialogOpen} />
     </div>
   )
 }

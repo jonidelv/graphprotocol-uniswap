@@ -86,7 +86,11 @@ function UserTable(props) {
       </TableHead>
       <TableBody>
         {props.users.map((user) => (
-          <CustomTableRow hover key={user.id} onClick={selectUser(user.id, props.selectUser)}>
+          <CustomTableRow
+            hover
+            key={user.id}
+            onClick={selectUser(user.id, props.selectUser)}
+          >
             <BodyCell>{user.id}</BodyCell>
             <BodyCell>
               {(() => {

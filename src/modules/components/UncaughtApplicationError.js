@@ -42,7 +42,8 @@ function UncaughtApplicationError() {
         <img src={errorImg} alt="error-logo" width="200" />
         <div css={styles.text}>OOPS!</div>
         <div css={styles.text}>
-          Looks like you are trying to get into something we are still developing...
+          Looks like you are trying to get into something we are still
+          developing...
         </div>
         <div css={styles.buttonWrapper}>
           <Button variant="contained" onClick={reload}>

@@ -67,8 +67,8 @@ const ToastContainerStyles = styled.div`
     z-index: 99999;
     padding: 5px 15px;
     border-radius: 0;
-    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
-      0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+      0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
     font-size: 14px;
     cursor: pointer;
     outline: none;
@@ -92,7 +92,8 @@ const ToastContainerStyles = styled.div`
     .Toastify__toast {
       font-size: 14px;
       border-radius: 0;
-      box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+      box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0px 4px 5px 0px rgba(0, 0, 0, 0.14),
         0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 
       &.Toastify__toast--success {
