@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/styles'
 import BigNumber from 'bignumber.js'
 import { theme } from '../../../constants'
 import userLogo from '../../../assets/user.png'
+import memoize from 'lodash/memoize'
 import ethLogo from '../../../assets/eth.png'
 import { queryUserTransactions } from '../../../services/apollo'
 import { Query } from 'react-apollo'
@@ -67,6 +68,8 @@ function selectUser(userId, select) {
   return () => select(userId)
 }
 
+const userRow = memoize((user) => ({ user }))
+
 function UserTable(props) {
   return (
     <Table>
@@ -76,7 +79,7 @@ function UserTable(props) {
             <img src={userLogo} alt="user logo" width="20" /> User ID
           </HeadCell>
           <HeadCell>
-            <img src={ethLogo} alt="eth logo" width="20" /> ETH Balance
+            <img src={ethLogo} alt="ETH logo" width="20" /> ETH Balance
           </HeadCell>
         </CustomTableRow>
       </TableHead>
@@ -89,10 +92,7 @@ function UserTable(props) {
           >
             <BodyCell>{user.id}</BodyCell>
             <BodyCell>
-              <Query
-                query={queryUserTransactions}
-                variables={{ user: user.id }}
-              >
+              <Query query={queryUserTransactions} variables={userRow(user.id)}>
                 {(response) =>
                   response.error ? (
                     <div>Error getting the balance</div>

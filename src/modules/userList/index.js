@@ -88,6 +88,7 @@ function onGamesScroll(users, fetchMore, loading, setLoading) {
 function responseError(error) {
   toast.error(error.message)
   console.warn(error)
+
   return (
     <div css={styles.errorEl}>
       Error loading the data, please try again later

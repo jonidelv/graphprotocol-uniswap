@@ -26,6 +26,7 @@ export const queryUserTransactions = gql`
       user
       ethAmount
       tokenAddress
+      tokenAmount
       tokenSymbol
     }
   }

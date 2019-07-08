@@ -5,6 +5,7 @@ import { css, jsx } from '@emotion/core'
 import Button from '@material-ui/core/Button'
 import { headerHeight, theme, logo, personalPage } from '../../constants'
 
+const openPersonalPage = () => () => window.open(personalPage, '_blank')
 const styles = {}
 styles.container = css`
   height: ${headerHeight}px;
@@ -61,10 +62,7 @@ function Header() {
         <img src={logo} alt="Logo" css={styles.logo} />
       </button>
       <div css={styles.title}>Uniswap Graphprotocol</div>
-      <Button
-        style={styles.button}
-        onClick={() => window.open(personalPage, '_blank')}
-      >
+      <Button style={styles.button} onClick={openPersonalPage}>
         Jonatan del Valle
       </Button>
     </header>
