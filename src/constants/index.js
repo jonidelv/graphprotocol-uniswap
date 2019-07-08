@@ -32,10 +32,10 @@ export const theme = {
       contrastText: '#fff',
     },
     text: {
-      primary: '#fff',
-      secondary: '#fff',
+      primary: 'rgba(0, 0, 0, 0.87)',
+      secondary: 'rgba(0, 0, 0, 0.54)',
       disabled: 'rgba(0, 0, 0, 0.38)',
-      hint: '#fff',
+      hint: 'rgba(0, 0, 0, 0.38)',
     },
   },
   typography: {

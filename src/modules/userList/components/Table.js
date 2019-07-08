@@ -33,8 +33,10 @@ const cellBodyStyles = {
     fontWeight: '500',
     paddingRight: 10,
     paddingLeft: 10,
-    cursor: 'pointer',
     flex: 1,
+    display: 'flex',
+    alignItems: 'center',
+    cursor: 'pointer',
   },
 }
 const BodyCell = withStyles(cellBodyStyles)(TableCell)
@@ -65,7 +67,11 @@ function balance(balances) {
   return 0
 }
 
-function UserTable({ users }) {
+function selectUser(userId, select) {
+  return () => select(userId)
+}
+
+function UserTable(props) {
   return (
     <Table>
       <TableHead>
@@ -79,8 +85,8 @@ function UserTable({ users }) {
         </CustomTableRow>
       </TableHead>
       <TableBody>
-        {users.map((user) => (
-          <CustomTableRow hover key={user.id}>
+        {props.users.map((user) => (
+          <CustomTableRow hover key={user.id} onClick={selectUser(user.id, props.selectUser)}>
             <BodyCell>{user.id}</BodyCell>
             <BodyCell>
               {(() => {
@@ -97,6 +103,7 @@ function UserTable({ users }) {
 
 UserTable.propTypes = {
   users: PropTypes.array.isRequired,
+  selectUser: PropTypes.func.isRequired,
 }
 
 export default React.memo(UserTable)

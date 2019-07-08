@@ -5,7 +5,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 
 export const queryUsersInfo = gql`
   query usersInfo($skip: Int) {
-    users(first: 20, skip: $skip) {
+    users(first: 25, skip: $skip) {
       id
       exchangeBalances {
         id
@@ -19,9 +19,21 @@ export const queryUsersInfo = gql`
   }
 `
 
-const client = new ApolloClient({
+export const queryUserTransactions = gql`
+  query userTransactions($user: Bytes!) {
+    transactions(where: { user: $user }) {
+      id
+      user
+      ethAmount
+      tokenAddress
+      tokenSymbol
+    }
+  }
+`
+
+const apolloClient = new ApolloClient({
   uri: uniswapUrl,
   cache: new InMemoryCache(),
 })
 
-export default client
+export default apolloClient

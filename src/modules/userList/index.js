@@ -11,13 +11,13 @@ import Fab from '@material-ui/core/Fab'
 import { queryUsersInfo } from '../../services/apollo'
 import { headerHeight, theme } from '../../constants'
 import Table from './components/Table'
+import Transactions from './components/Transactions'
 
 const styles = {}
 styles.tableContainer = css`
   padding: 40px;
   position: relative;
   height: calc(100vh - ${headerHeight}px);
-  overflow: scroll;
 `
 styles.progressBarWrapper = css`
   display: flex;
@@ -92,6 +92,7 @@ function responseError(error) {
 function UserList() {
   const tableContainerRef = React.useRef(null)
   const [loading, setLoading] = React.useState(false)
+  const [selectedUser, setSelectedUser] = React.useState('')
 
   return (
     <div>
@@ -104,9 +105,12 @@ function UserList() {
               css={styles.tableContainer}
               onScroll={onGamesScroll(response.data && response.data.users, response.fetchMore, loading, setLoading)}
               ref={tableContainerRef}
+              className="no-scroll"
             >
               {/* User table */}
-              {response.data && response.data.users && <Table users={response.data.users} />}
+              {response.data && response.data.users && (
+                <Table users={response.data.users} selectUser={setSelectedUser} />
+              )}
 
               {/* Loading indicator */}
               <div css={styles.progressBarWrapper}>
@@ -123,6 +127,7 @@ function UserList() {
           )
         }
       </Query>
+      <Transactions open={!!selectedUser} setSelectedUser={setSelectedUser} selectedUser={selectedUser} />
     </div>
   )
 }

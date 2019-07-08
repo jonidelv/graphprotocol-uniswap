@@ -45,6 +45,9 @@ styles.title = css`
   left: 50%;
   transform: translate(-50%, -50%);
 `
+styles.button = {
+  color: theme.palette.common.white,
+}
 
 function Header() {
   return (
@@ -58,7 +61,7 @@ function Header() {
         <img src={logo} alt="Logo" css={styles.logo} />
       </button>
       <div css={styles.title}>Uniswap Graphprotocol</div>
-      <Button style={styles.email} onClick={() => window.open(personalPage, '_blank')}>
+      <Button style={styles.button} onClick={() => window.open(personalPage, '_blank')}>
         Jonatan del Valle
       </Button>
     </header>
