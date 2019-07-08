@@ -76,10 +76,10 @@ function UserTable(props) {
       <TableHead>
         <CustomTableRow>
           <HeadCell>
-            <img src={userLogo} alt="user logo" width="20" /> User ID
+            <img src={userLogo} alt="user logo" width="20" /> User
           </HeadCell>
           <HeadCell>
-            <img src={ethLogo} alt="ETH logo" width="20" /> ETH Balance
+            <img src={ethLogo} alt="ETH logo" width="20" /> Balance
           </HeadCell>
         </CustomTableRow>
       </TableHead>
