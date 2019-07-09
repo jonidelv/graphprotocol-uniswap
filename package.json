@@ -10,6 +10,7 @@
     "@material-ui/styles": "^4.2.0",
     "apollo-boost": "^0.4.3",
     "bignumber.js": "^9.0.0",
+    "formik": "^1.5.7",
     "graphql": "^14.4.2",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",

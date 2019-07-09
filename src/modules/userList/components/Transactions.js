@@ -50,7 +50,7 @@ styles.errorEl = css`
   font-weight: 500;
 `
 styles.dialogBody = css`
-  width: 500px;
+  width: 450px;
   height: 400px;
 `
 styles.labels = css`
@@ -103,7 +103,10 @@ function Transactions(props) {
         <DialogTitle style={styles.dialogTitle}>Transactions</DialogTitle>
         <DialogContent>
           <div css={styles.dialogBody} className="no-scroll">
-            <Query query={queryUserTransactions} variables={selectedUser(props.selectedUser)}>
+            <Query
+              query={queryUserTransactions}
+              variables={selectedUser(props.selectedUser)}
+            >
               {(response) =>
                 response.error ? (
                   responseError(response.error)
@@ -118,24 +121,28 @@ function Transactions(props) {
                           <p css={styles.texts}>{transaction.tokenAddress}</p>
                           <div css={styles.labels}>User</div>
                           <p css={styles.texts}>{transaction.user}</p>
-                          <div css={styles.labels}>Token</div>
-                          <p css={styles.texts}>{transaction.tokenSymbol}</p>
                           <div css={styles.labels}>ETH Amount</div>
                           <p css={styles.texts}>{transaction.ethAmount}</p>
-                          <div css={styles.labels}>Token Amount</div>
-                          <p css={styles.texts}>{transaction.tokenAmount}</p>
                         </div>
                       ))}
 
                     {/* No transactions msg */}
-                    {response.data.transactions && !response.data.transactions.length && props.selectedUser && (
-                      <div css={styles.noTransactions}>No transactions for this user</div>
-                    )}
+                    {response.data.transactions &&
+                      !response.data.transactions.length &&
+                      props.selectedUser && (
+                        <div css={styles.noTransactions}>
+                          No transactions for this user
+                        </div>
+                      )}
 
                     {/* Loading indicator */}
                     <div css={styles.progressBarWrapper}>
                       {response.loading && props.selectedUser && (
-                        <CircularProgress color="primary" size={40} thickness={4} />
+                        <CircularProgress
+                          color="primary"
+                          size={40}
+                          thickness={4}
+                        />
                       )}
                     </div>
                   </div>
@@ -145,7 +152,11 @@ function Transactions(props) {
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={close(props.setSelectedUser)} color="primary" variant="contained">
+          <Button
+            onClick={close(props.setSelectedUser)}
+            color="primary"
+            variant="contained"
+          >
             Close
           </Button>
         </DialogActions>

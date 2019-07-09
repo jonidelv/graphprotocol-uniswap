@@ -18,7 +18,7 @@ export const theme = {
     primary: {
       light: '#ad77f3',
       main: '#6A10E0',
-      dark: '#2b0063',
+      dark: '#300667',
       contrastText: '#fff',
     },
     secondary: {

@@ -12,7 +12,7 @@ import { queryUsersInfo } from '../../services/apollo'
 import { headerHeight, theme } from '../../constants'
 import Table from './components/Table'
 import Transactions from './components/Transactions'
-import Transfer from './components/Transfer'
+import ETHTransfer from './components/ETHTransfer'
 
 const styles = {}
 styles.tableContainer = css`
@@ -159,7 +159,7 @@ function UserList() {
         setSelectedUser={setSelectedUser}
         selectedUser={selectedUser}
       />
-      <Transfer
+      <ETHTransfer
         open={transferDialogOpen}
         setTransferDialogOpen={setTransferDialogOpen}
       />

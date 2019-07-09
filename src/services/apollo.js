@@ -26,8 +26,6 @@ export const queryUserTransactions = gql`
       user
       ethAmount
       tokenAddress
-      tokenAmount
-      tokenSymbol
     }
   }
 `
@@ -36,5 +34,7 @@ const apolloClient = new ApolloClient({
   uri: uniswapUrl,
   cache: new InMemoryCache(),
 })
+
+export const { cache } = apolloClient
 
 export default apolloClient
