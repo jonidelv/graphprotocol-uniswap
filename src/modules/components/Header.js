@@ -35,7 +35,6 @@ styles.clickButton = css`
   align-items: center;
   justify-content: center;
   outline: 0;
-  cursor: pointer;
 `
 styles.title = css`
   text-transform: uppercase;
@@ -54,9 +53,6 @@ function Header() {
   return (
     <header css={styles.container}>
       <button
-        onClick={() => {
-          document.location.href = '/'
-        }}
         css={styles.clickButton}
       >
         <img src={logo} alt="Logo" css={styles.logo} />
