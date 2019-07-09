@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/graphprotocol-uniswap/static/css/main.4d875f7c.chunk.css",
+    "main.js": "/graphprotocol-uniswap/static/js/main.0e2bcebe.chunk.js",
+    "main.js.map": "/graphprotocol-uniswap/static/js/main.0e2bcebe.chunk.js.map",
+    "runtime~main.js": "/graphprotocol-uniswap/static/js/runtime~main.c1ed73c3.js",
+    "runtime~main.js.map": "/graphprotocol-uniswap/static/js/runtime~main.c1ed73c3.js.map",
+    "static/css/2.c829125e.chunk.css": "/graphprotocol-uniswap/static/css/2.c829125e.chunk.css",
+    "static/js/2.ef217f10.chunk.js": "/graphprotocol-uniswap/static/js/2.ef217f10.chunk.js",
+    "static/js/2.ef217f10.chunk.js.map": "/graphprotocol-uniswap/static/js/2.ef217f10.chunk.js.map",
+    "index.html": "/graphprotocol-uniswap/index.html",
+    "precache-manifest.2a270eb9e7696874a2f35c518358ce73.js": "/graphprotocol-uniswap/precache-manifest.2a270eb9e7696874a2f35c518358ce73.js",
+    "service-worker.js": "/graphprotocol-uniswap/service-worker.js",
+    "static/css/2.c829125e.chunk.css.map": "/graphprotocol-uniswap/static/css/2.c829125e.chunk.css.map",
+    "static/css/main.4d875f7c.chunk.css.map": "/graphprotocol-uniswap/static/css/main.4d875f7c.chunk.css.map",
+    "static/media/error.png": "/graphprotocol-uniswap/static/media/error.c4982caa.png"
+  }
+}
